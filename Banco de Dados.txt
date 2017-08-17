@@ -1,0 +1,51 @@
+create user prefeitura with password '1234'
+create database db_prefeitura with owner prefeitura
+
+create table aluno(
+	id serial primary key,
+	dataCadastro timestamp,
+	nome varchar(100),
+	cpf varchar(100),
+	rg varchar(100),
+	orgaoExpedidor varchar(100),
+	rua varchar(100),
+	numero varchar(100),
+	bairro varchar(100),
+	complemento varchar(100),
+	municipio varchar(100),
+	estado varchar(100),
+	cep varchar(100),
+	email varchar(100),
+	telFixo varchar(100),
+	telMovel varchar(100),
+	instituicao varchar(100),
+	curso varchar(100),
+	periodo varchar(100),
+	dataNascimento varchar(100),
+	segunda boolean,
+	terca boolean,
+	quarta boolean,
+	quinta boolean,
+	sexta boolean,
+	sabado boolean,
+	ativo boolean		
+		
+);
+
+create table passe(
+	id serial primary key,
+	id_aluno integer,
+	dataRetirada timestamp,
+	dataInicio timestamp,
+	dataFinal timestamp,
+	aluno varchar(100),
+	origem  varchar(100),
+	destino  varchar(100),
+	responsavel varchar(100),
+	curso varchar(100),
+	quantidade integer,
+	ativo boolean
+);
+
+ALTER TABLE passe ADD FOREIGN KEY (id_aluno) REFERENCES aluno(id);
+TRUNCATE TABLE nome_tabela RESTART IDENTITY;
