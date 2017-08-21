@@ -42,6 +42,7 @@ import net.sf.jasperreports.view.JasperViewer;
 /**
  *
  * @author Danilo de Maria
+ * inserido atalho rapido 'ESC' para fechar a janela    
  */
 public class RetiraPasse extends javax.swing.JFrame {
 
