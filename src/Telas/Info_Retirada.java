@@ -23,6 +23,7 @@ import javax.swing.KeyStroke;
 /**
  *
  * @author Danilo de Maria
+ * mostra a última retirada do aluno selecionado
  */
 public class Info_Retirada extends javax.swing.JFrame {
 
