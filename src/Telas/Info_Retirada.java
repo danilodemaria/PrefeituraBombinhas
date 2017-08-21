@@ -12,6 +12,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.net.URL;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JComponent;
@@ -26,8 +29,10 @@ public class Info_Retirada extends javax.swing.JFrame {
     /**
      * Creates new form Info_Retirada
      */
-    public Info_Retirada(String id) {
+    public Info_Retirada(String id) throws SQLException {
         initComponents();
+        String dataretirada,datainicio,datafinal;
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         URL url = this.getClass().getResource("/Imagens/01.png");
@@ -46,6 +51,21 @@ public class Info_Retirada extends javax.swing.JFrame {
         getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(escapeKeyStroke, "ESCAPE");
         getRootPane().getActionMap().put("ESCAPE", escapeAction);
         ;
+        
+        while(rs.next()){
+            dataretirada = df.format(rs.getDate("dataretirada"));
+            datainicio = df.format(rs.getDate("datainicio"));
+            datafinal = df.format(rs.getDate("datafinal"));
+            codigo.setText(id);
+            nome.setText(rs.getString("aluno"));
+            curso.setText(rs.getString("curso"));
+            origem.setText(rs.getString("origem"));
+            destino.setText(rs.getString("destino"));
+            retirada.setText(dataretirada);
+            inicio.setText(datainicio);
+            dataFinal.setText(datafinal);
+            qtd.setText(rs.getString("quantidade"));
+        }
     }
     
     public boolean fechar() {
@@ -106,6 +126,7 @@ public class Info_Retirada extends javax.swing.JFrame {
         jLabel9.setText("Destino");
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 0, 0));
         jLabel10.setText("Data Retirada");
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -121,7 +142,7 @@ public class Info_Retirada extends javax.swing.JFrame {
         jLabel14.setText("Curso");
 
         codigo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        codigo.setText("jLabel2");
+        codigo.setText("Não Há");
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton1.setText("Ok");
@@ -132,28 +153,29 @@ public class Info_Retirada extends javax.swing.JFrame {
         });
 
         nome.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        nome.setText("jLabel2");
+        nome.setText("Não Há");
 
         origem.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        origem.setText("jLabel2");
+        origem.setText("Não Há");
 
         dataFinal.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        dataFinal.setText("jLabel2");
+        dataFinal.setText("Não Há");
 
         curso.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        curso.setText("jLabel2");
+        curso.setText("Não Há");
 
         qtd.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        qtd.setText("jLabel2");
+        qtd.setText("Não Há");
 
         destino.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        destino.setText("jLabel2");
+        destino.setText("Não Há");
 
         inicio.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        inicio.setText("jLabel2");
+        inicio.setText("Não Há");
 
         retirada.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        retirada.setText("jLabel2");
+        retirada.setForeground(new java.awt.Color(255, 0, 0));
+        retirada.setText("Não Há");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -162,27 +184,38 @@ public class Info_Retirada extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(186, 186, 186)
-                        .addComponent(jLabel1))
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel6)
+                        .addGap(57, 57, 57)
+                        .addComponent(codigo)
+                        .addGap(161, 161, 161)
+                        .addComponent(jLabel14)
+                        .addGap(54, 54, 54)
+                        .addComponent(curso))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel12))
-                                .addGap(40, 40, 40)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(dataFinal)
-                                    .addComponent(origem)
-                                    .addComponent(nome)
-                                    .addComponent(codigo)))
+                        .addComponent(jLabel7)
+                        .addGap(66, 66, 66)
+                        .addComponent(nome))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(288, 288, 288)
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(retirada)))
+                                .addGap(18, 18, 18)
+                                .addComponent(retirada))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel12)
+                                .addGap(43, 43, 43)
+                                .addComponent(dataFinal))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel8)
+                        .addGap(57, 57, 57)
+                        .addComponent(origem)
                         .addGap(161, 161, 161)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -190,56 +223,61 @@ public class Info_Retirada extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(qtd))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel14)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jLabel11))
-                                .addGap(23, 23, 23)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(curso)
-                                    .addComponent(destino)
-                                    .addComponent(inicio)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(287, 287, 287)
-                        .addComponent(jButton1)))
-                .addContainerGap(203, Short.MAX_VALUE))
+                                .addComponent(jLabel11)
+                                .addGap(18, 18, 18)
+                                .addComponent(inicio))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addGap(42, 42, 42)
+                                .addComponent(destino)))))
+                .addGap(0, 192, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(181, 181, 181))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(11, 11, 11)
                 .addComponent(jLabel1)
                 .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
-                    .addComponent(jLabel14)
                     .addComponent(codigo)
+                    .addComponent(jLabel14)
                     .addComponent(curso))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addComponent(nome))
                 .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
-                    .addComponent(jLabel9)
                     .addComponent(origem)
+                    .addComponent(jLabel9)
                     .addComponent(destino))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel11)
-                    .addComponent(inicio)
-                    .addComponent(retirada))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel13)
-                    .addComponent(qtd)
-                    .addComponent(dataFinal))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(27, 27, 27))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10)
+                            .addComponent(retirada))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel11)
+                            .addComponent(inicio))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel12)
+                            .addComponent(dataFinal)
+                            .addComponent(jLabel13)
+                            .addComponent(qtd))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(38, 38, 38))))
         );
 
         pack();

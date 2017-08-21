@@ -249,10 +249,10 @@ public class BuscaAlunoRetira extends javax.swing.JFrame {
     private void tabela_IDMousePressed(java.awt.event.MouseEvent evt) throws SQLException {
         int a = tabela.getSelectedRow();
         String id = (String) tabela.getValueAt(a, 0);
-        Info_Retirada info = new Info_Retirada(id);
-        info.setVisible(true);
         RetiraPasse exibir = new RetiraPasse(id);
         exibir.setVisible(true);
+        Info_Retirada info = new Info_Retirada(id);
+        info.setVisible(true);        
         this.dispose();
     }
 

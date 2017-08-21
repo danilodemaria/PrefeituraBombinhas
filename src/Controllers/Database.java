@@ -373,6 +373,18 @@ public class Database {
     }
 
     public ResultSet buscaUltimoPasse(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ResultSet rs = null;
+        String stm = "select * from passe  where id_aluno = "+id+" order by id desc limit 1";
+        PreparedStatement pst;
+        Connection conn = Database.Connect();
+        try {
+            pst = conn.prepareStatement(stm);
+            rs = pst.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return rs;
     }
+    
+   
 }

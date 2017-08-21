@@ -9,6 +9,8 @@ import Controllers.Database;
 import Controllers.Passe;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
@@ -21,8 +23,12 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.JComponent;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
 import javax.swing.text.MaskFormatter;
 import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRException;
@@ -73,6 +79,21 @@ public class RetiraPasse extends javax.swing.JFrame {
         URL url = this.getClass().getResource("/Imagens/01.png");
         Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(url);
         this.setIconImage(iconeTitulo);
+        KeyStroke escapeKeyStroke = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0, false);
+        Action escapeAction = new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                fechar();
+            }
+        };
+        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(escapeKeyStroke, "ESCAPE");
+        getRootPane().getActionMap().put("ESCAPE", escapeAction);
+        ;
+    }
+    
+    public boolean fechar() {
+        this.dispose();
+        return true;
     }
 
     private RetiraPasse() {
