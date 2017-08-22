@@ -407,6 +407,8 @@ public class RetiraPasse extends javax.swing.JFrame {
                     imprime(passe);
                 } catch (JRException ex) {
                     Logger.getLogger(RetiraPasse.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(RetiraPasse.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 this.dispose();
             } else {
@@ -418,15 +420,22 @@ public class RetiraPasse extends javax.swing.JFrame {
 
     }//GEN-LAST:event_salvarMouseClicked
 
-    public void imprime(Passe passe) throws JRException {
+    public void imprime(Passe passe) throws JRException, SQLException {
         HashMap parameters = new HashMap();
-
+        String cpf = null;
+        ResultSet rs = null;
         URL url = this.getClass().getResource("/Imagens/logo_bombinhas.png");
-
         BufferedImage img = null;
         try {
             img = ImageIO.read(url);
         } catch (IOException e) {
+        }
+        
+        Database conexao = new Database();
+        rs = conexao.BuscaAlunoAtualizar(codigo.getText());
+        
+        while(rs.next()){
+            cpf = rs.getString("cpf");
         }
 
         parameters.put("codigo", codigo.getText());
@@ -439,6 +448,7 @@ public class RetiraPasse extends javax.swing.JFrame {
         parameters.put("quantidade", quantidade.getText());
         parameters.put("responsavel", responsavel.getText());
         parameters.put("codigoPasse", numPasse.getText());
+        parameters.put("cpf",cpf);
         parameters.put("logo", img);
 
         JasperReport jr = JasperCompileManager.compileReport(
