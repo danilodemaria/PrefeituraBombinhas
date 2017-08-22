@@ -52,6 +52,7 @@ public class Info_Retirada extends javax.swing.JFrame {
         getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(escapeKeyStroke, "ESCAPE");
         getRootPane().getActionMap().put("ESCAPE", escapeAction);
         ;
+
         
         while(rs.next()){
             dataretirada = df.format(rs.getDate("dataretirada"));
