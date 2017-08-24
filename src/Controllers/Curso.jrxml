@@ -143,14 +143,14 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Quantidade]]></text>
+				<text><![CDATA[Origem]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="214" y="9" width="160" height="30" uuid="9abd9df2-8d28-4d43-b071-744d8c55c63a"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Origem]]></text>
+				<text><![CDATA[Destino]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="374" y="9" width="156" height="30" uuid="a250e6f6-9167-4686-b0ce-046b7f0e8f65">
@@ -159,7 +159,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Destino]]></text>
+				<text><![CDATA[Quantidade]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="-1" y="10" width="121" height="30" uuid="677e83ae-07e9-47c7-a021-b55c31fa0f83"/>
