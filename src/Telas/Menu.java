@@ -29,6 +29,7 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() throws SQLException {
         initComponents();
+        AplicaNimbusLookAndFeel.pegaNimbus();
         mostrarHora();
         this.setExtendedState(MAXIMIZED_BOTH);
         Database conexao1 = new Database();

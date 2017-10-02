@@ -5,7 +5,6 @@
  */
 package Telas;
 
-import java.util.ArrayList;
 import Controllers.Database;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -98,7 +97,20 @@ public class BuscaAlunoRelatorio extends javax.swing.JFrame {
             new String [] {
                 "Código", "Nome", "CPF", "Ativo"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabela.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tabela);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -207,6 +219,15 @@ public class BuscaAlunoRelatorio extends javax.swing.JFrame {
 
         createKeybindings(tabela);
     }//GEN-LAST:event_buttonBuscarMouseClicked
+
+    private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
+        int a = tabela.getSelectedRow();
+
+        String id = (String) tabela.getValueAt(a, 0);
+        Relatorio_Aluno novo = new Relatorio_Aluno(id, dataInicio1, dataFinal1);
+        this.dispose();
+        novo.setVisible(true);
+    }//GEN-LAST:event_tabelaMouseClicked
 
     public void limpaTabela() {
         DefaultTableModel dm = (DefaultTableModel) tabela.getModel();

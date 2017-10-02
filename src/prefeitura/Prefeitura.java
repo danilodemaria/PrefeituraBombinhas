@@ -7,6 +7,7 @@ package prefeitura;
 
 import Telas.Menu;
 import java.sql.SQLException;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -17,7 +18,7 @@ public class Prefeitura {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException,UnsupportedLookAndFeelException {
         // TODO code application logic here
         Menu exibir = new Menu();
         exibir.setVisible(true);

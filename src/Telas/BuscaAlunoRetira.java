@@ -92,7 +92,20 @@ public class BuscaAlunoRetira extends javax.swing.JFrame {
             new String [] {
                 "Código", "Nome", "CPF", "Ativo"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabela.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tabela);
 
         campoBusca.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -223,6 +236,28 @@ public class BuscaAlunoRetira extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
+         if (evt.getClickCount() == 2) {
+            int a = tabela.getSelectedRow();
+        String id = (String) tabela.getValueAt(a, 0);
+        RetiraPasse exibir = null;
+             try {
+                 exibir = new RetiraPasse(id);
+             } catch (SQLException ex) {
+                 Logger.getLogger(BuscaAlunoRetira.class.getName()).log(Level.SEVERE, null, ex);
+             }
+        exibir.setVisible(true);
+        Info_Retirada info = null;
+             try {
+                 info = new Info_Retirada(id);
+             } catch (SQLException ex) {
+                 Logger.getLogger(BuscaAlunoRetira.class.getName()).log(Level.SEVERE, null, ex);
+             }
+        info.setVisible(true);        
+        this.dispose();
+        }
+    }//GEN-LAST:event_tabelaMouseClicked
 
     public void limpaTabela() {
         DefaultTableModel dm = (DefaultTableModel) tabela.getModel();

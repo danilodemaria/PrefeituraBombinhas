@@ -114,7 +114,20 @@ public class BuscaAluno extends javax.swing.JFrame {
             new String [] {
                 "Código", "Nome", "CPF", "Ativo"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabela.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tabela);
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -220,6 +233,22 @@ public class BuscaAluno extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
+        
+        if (evt.getClickCount() == 2) {
+            int a = tabela.getSelectedRow();
+            String id = (String) tabela.getValueAt(a, 0);
+            EditarAluno exibir = null;
+            try {
+                exibir = new EditarAluno(id);
+            } catch (SQLException ex) {
+                Logger.getLogger(BuscaAluno.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            exibir.setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_tabelaMouseClicked
 
     private void createKeybindings(JTable table) {
         table.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "Enter");
